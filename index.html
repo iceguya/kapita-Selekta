@@ -281,14 +281,21 @@
 
   // Scroll spy nav
   const links = [...document.querySelectorAll('.nav-link')];
-  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
-  const spy = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      const idx = sections.indexOf(e.target);
-      if(e.isIntersecting){ links.forEach(l=>l.classList.remove('active')); links[idx].classList.add('active'); }
-    });
-  },{rootMargin:'-60% 0px -35% 0px', threshold:0});
-  sections.forEach(s=>s && spy.observe(s));
+const sections = links.map(a => {
+  const href = a.getAttribute('href') || '';
+  return href.startsWith('#') ? document.querySelector(href) : null;
+});
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    const idx = sections.indexOf(e.target);
+    if (e.isIntersecting && idx !== -1) {
+      links.forEach(l => l.classList.remove('active'));
+      links[idx].classList.add('active');
+    }
+  });
+},{ rootMargin:'-60% 0px -35% 0px', threshold:0 });
+
+sections.forEach(s => s && spy.observe(s));
 
   // Skills animate
   const bars = document.querySelectorAll('.bar>span');
