@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kapita Selecta • Muhammad Faisal</title>
+  <meta name="description" content="Halaman khusus Kapita Selecta: SWOT & Porter e‑Voting, ringkas SWEBOK, dan Open Source Philosophy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#0b0e14; --muted:#111522; --card:#0f1422; --text:#e7ecf4; --sub:#a6b0c3; --brand:#6c8cff; --brand-2:#7df0ff; --ring:0 0 0 3px rgba(108,140,255,.35) }
+    [data-theme="light"]{ --bg:#f7f8fb; --muted:#fff; --card:#ffffff; --text:#0b1220; --sub:#5b6478; --brand:#4158f5; --brand-2:#06b6d4 }
+    *{ box-sizing:border-box }
+    html{ scroll-behavior:smooth }
+    body{ margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; color:var(--text); background:linear-gradient(120deg,var(--bg),#0c1527 50%, var(--bg) 100%) }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px }
+    header{ position:sticky; top:0; z-index:40; background:color-mix(in oklab,var(--bg),#000 10%); backdrop-filter:saturate(140%) blur(8px); border-bottom:1px solid rgba(255,255,255,.06) }
+    nav{ display:flex; gap:16px; align-items:center; height:64px }
+    nav a{ color:var(--sub); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px }
+    nav a.active, nav a:hover{ color:var(--text); background:rgba(255,255,255,.06) }
+    .brand{ display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px }
+    .brand .dot{ width:10px; height:10px; border-radius:12px; background:linear-gradient(90deg,var(--brand),var(--brand-2)) }
+
+    .section{ padding:44px 0 }
+    h1{ font-size:clamp(28px,5vw,44px); margin:18px 0 0 }
+    h2.section-title{ font-size:clamp(22px,3vw,28px); margin:0 0 14px }
+    p.section-sub{ margin:0 0 22px; color:var(--sub) }
+    .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
+    .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px }
+    .card{ background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); border-radius:16px }
+    .card.pad{ padding:18px }
+    .space{ height:20px }
+
+    .hero{ padding:52px 0 8px }
+    .breadcrumbs{ font-size:14px; color:var(--sub) }
+    .breadcrumbs a{ color:var(--sub); text-decoration:none }
+
+    .note{ font-size:14px; color:var(--sub) }
+    .kbd{ border:1px solid rgba(255,255,255,.2); border-bottom-width:3px; border-radius:.4rem; padding:.1rem .35rem; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace }
+
+    footer{ border-top:1px solid rgba(255,255,255,.08); padding:26px 0; color:var(--sub); text-align:center }
+
+    @media(max-width:980px){ .grid-3{ grid-template-columns:1fr 1fr } .grid-2{ grid-template-columns:1fr } }
+    @media(max-width:640px){ .grid-3{ grid-template-columns:1fr } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><span class="dot"></span> Muhammad Faisal</div>
+        <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+          <a href="index.html#home">Home</a>
+          <a href="index.html#projects">Proyek</a>
+          <a class="active" href="#top">Kapita Selecta</a>
+          <button id="themeToggle" aria-label="Toggle tema" class="kbd" title="Tema">Tema</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero">
+      <div class="breadcrumbs">Portofolio → <a href="index.html#projects">Proyek</a> → <strong>Kapita Selecta</strong></div>
+      <h1>Kapita Selecta</h1>
+      <p class="section-sub">Halaman ini merangkum materi kuliah yang sebelumnya kamu kumpulkan: SWOT & Porter untuk e‑Voting berbasis blockchain, ringkasan SWEBOK untuk rencana KP/Skripsi, dan Open Source Philosophy.</p>
+      <div class="grid-3">
+        <a class="card pad" href="#swot"><strong>SWOT e‑Voting</strong><p>Transparansi, keamanan, tantangan privasi, dan peluang pilot kampus.</p></a>
+        <a class="card pad" href="#porter"><strong>Porter e‑Voting</strong><p>Pendatang baru, pemasok, pembeli, substitusi, rivalitas.</p></a>
+        <a class="card pad" href="#swebok"><strong>SWEBOK</strong><p>Requirements, Design, Testing, Quality/Config, Eng. Management.</p></a>
+      </div>
+    </section>
+
+    <section id="swot" class="section">
+      <h2 class="section-title">SWOT: e‑Voting Berbasis Blockchain</h2>
+      <div class="grid-2">
+        <div class="card pad"><h3>Strengths</h3><ul><li>Ledger permanen terenkripsi; sulit dimanipulasi.</li><li>Transparansi audit publik tanpa membuka identitas.</li><li>Efisiensi: perhitungan cepat, hemat logistik.</li></ul></div>
+        <div class="card pad"><h3>Weaknesses</h3><ul><li>Kompleksitas teknis privasi + skalabilitas.</li><li>Menjaga anonimitas sambil audit kuat itu sulit.</li><li>Butuh infrastruktur node dan perangkat yang reliabel.</li></ul></div>
+        <div class="card pad"><h3>Opportunities</h3><ul><li>Digitalisasi pemilu, kolaborasi lintas disiplin.</li><li>Pilot skala kecil di kampus/organisasi/desa.</li><li>Riset lanjutan kriptografi (ZKP, mixnet, dsb.).</li></ul></div>
+        <div class="card pad"><h3>Threats</h3><ul><li>Regulasi dan resistensi institusional.</li><li>Serangan ke aplikasi, wallet, dan perangkat pemilih.</li><li>Skeptisisme publik terkait kecurangan/privasi.</li></ul></div>
+      </div>
+    </section>
+
+    <section id="porter" class="section">
+      <h2 class="section-title">Porter’s Five Forces: e‑Voting</h2>
+      <div class="grid-3">
+        <div class="card pad"><h3>Pendatang Baru</h3><p>Sedang: prototipe mudah, tapi skala besar butuh legitimasi dan modal.</p></div>
+        <div class="card pad"><h3>Daya Tawar Pemasok</h3><p>Tinggi: ketergantungan protokol blockchain, infrastruktur, dan vendor.</p></div>
+        <div class="card pad"><h3>Daya Tawar Pembeli</h3><p>Tinggi: penyelenggara menuntut keamanan, privasi, dan legitimasi hukum.</p></div>
+        <div class="card pad"><h3>Substitusi</h3><p>Sedang‑tinggi: e‑voting terpusat dan pemilu kertas masih dianggap mapan.</p></div>
+        <div class="card pad"><h3>Rivalitas</h3><p>Tinggi: banyak riset/konsorsium dari skala kampus hingga nasional.</p></div>
+      </div>
+    </section>
+
+    <section id="swebok" class="section">
+      <h2 class="section-title">Ringkas SWEBOK untuk KP/Skripsi</h2>
+      <div class="grid-2">
+        <div class="card pad"><h3>Requirements</h3><ul><li>Peran: pemilih, panitia, auditor.</li><li>Integrasi perangkat/IoT bila dibutuhkan.</li><li>Non-fungsional: keamanan, privasi, keandalan.</li></ul></div>
+        <div class="card pad"><h3>Design</h3><ul><li>Modular, opsi microservices.</li><li>Boundary service: auth, tally, audit.</li><li>Observability: log, metrics, trace.</li></ul></div>
+        <div class="card pad"><h3>Testing</h3><ul><li>Unit, integrasi, end‑to‑end.</li><li>Uji keamanan dan beban.</li><li>Chaos kecil untuk reliabilitas.</li></ul></div>
+        <div class="card pad"><h3>Quality & Config</h3><ul><li>Versioning, branching, release.</li><li>CI/CD, code review, SAST/DAST.</li><li>Audit trail dan dokumentasi.</li></ul></div>
+        <div class="card pad"><h3>Eng. Management</h3><ul><li>Milestone realistis dan risiko.</li><li>Komunikasi stakeholder.</li><li>RACI dan retrospektif.</li></ul></div>
+      </div>
+    </section>
+
+    <section id="oss" class="section">
+      <h2 class="section-title">Open Source Philosophy</h2>
+      <div class="grid-2">
+        <div class="card pad"><h3>Prinsip</h3><ul><li>Keterbukaan kode dan dokumentasi.</li><li>Hak mempelajari, memodifikasi, mendistribusikan.</li><li>Komunitas sebagai mekanisme review.</li></ul></div>
+        <div class="card pad"><h3>Praktik</h3><ul><li>Repos publik dengan <span class="kbd">README</span>, <span class="kbd">CONTRIBUTING</span>, <span class="kbd">LICENSE</span>.</li><li>Issue/PR terbuka dan label yang jelas.</li><li>Automasi CI/CD untuk kualitas berkelanjutan.</li></ul></div>
+      </div>
+      <p class="note">Tip: tautkan materi ini ke repo GitHub tugasmu supaya evaluator bisa audit langsung.</p>
+    </section>
+
+    <p style="text-align:right"><a class="kbd" href="#top">↑ Kembali ke atas</a></p>
+  </main>
+
+  <footer>
+    © <span id="year"></span> • Muhammad Faisal • Halaman Kapita Selecta
+  </footer>
+
+<script>
+  // Theme toggle + persist
+  const themeBtn = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme');
+  if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+  themeBtn.onclick = () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? '' : 'light';
+    if(next) document.documentElement.setAttribute('data-theme', next); else document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', next);
+  };
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
