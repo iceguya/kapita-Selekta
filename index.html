@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhammad Faisal • Portofolio</title>
+  <meta name="description" content="Portofolio interaktif Muhammad Faisal – Informatics Engineering. Proyek, keahlian, timeline, dan kontak." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0e14; --muted:#111522; --card:#0f1422; --text:#e7ecf4; --sub:#a6b0c3; --brand:#6c8cff; --brand-2:#7df0ff; --ring:0 0 0 3px rgba(108,140,255,.35)
+    }
+    [data-theme="light"]{--bg:#f7f8fb; --muted:#fff; --card:#ffffff; --text:#0b1220; --sub:#5b6478; --brand:#4158f5; --brand-2:#06b6d4}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; color:var(--text); background:linear-gradient(120deg,var(--bg),#0c1527 50%, var(--bg) 100%)}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:40;background:color-mix(in oklab,var(--bg),#000 10%);backdrop-filter:saturate(140%) blur(8px); border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{display:flex;gap:16px;align-items:center;height:64px}
+    nav a{color:var(--sub);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a.active, nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.2px}
+    .brand .dot{width:10px;height:10px;border-radius:12px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    .space{height:20px}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:56px 0}
+    .hero h1{font-size:clamp(28px,5vw,48px);line-height:1.05;margin:0 0 10px}
+    .hero p{color:var(--sub);font-size:1.06rem}
+    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));color:var(--text);padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:600}
+    .btn.primary{border-color:transparent;background:linear-gradient(90deg,var(--brand),var(--brand-2)); color:#071019}
+    .btn:focus{outline:none;box-shadow:var(--ring)}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:16px}
+    .card.pad{padding:18px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .section{padding:44px 0}
+    h2.section-title{font-size:clamp(22px,3vw,28px);margin:0 0 14px}
+    p.section-sub{margin:0 0 22px;color:var(--sub)}
+
+    /* Skills */
+    .skill{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center}
+    .bar{height:10px;background:rgba(255,255,255,.08);border-radius:999px;position:relative;overflow:hidden}
+    .bar>span{position:absolute;inset:0 0 0 0;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+
+    /* Projects */
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .chip{border:1px solid rgba(255,255,255,.12);color:var(--sub);background:rgba(255,255,255,.03);padding:6px 10px;border-radius:999px;font-weight:600;cursor:pointer}
+    .chip.active{border-color:transparent;color:#071019;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    .project{position:relative;overflow:hidden;border-radius:14px;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end}
+    .project .meta{padding:14px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55))}
+    .project .title{font-weight:800}
+    .project .tag{font-size:12px;color:#dbe7ff}
+    .project img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(110%) contrast(110%);transform:scale(1.04);transition:transform .5s}
+    .project:hover img{transform:scale(1.1)}
+
+    /* Timeline */
+    .timeline{border-left:2px solid rgba(255,255,255,.15);padding-left:16px}
+    .tl-item{position:relative;margin-bottom:18px}
+    .tl-item::before{content:"";position:absolute;left:-10px;top:4px;width:10px;height:10px;border-radius:12px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    .tl-item h4{margin:0}
+    .tl-item p{margin:.2rem 0;color:var(--sub)}
+
+    /* Modal */
+    dialog{border:none;border-radius:16px;max-width:min(920px,92vw);padding:0;background:var(--card);color:var(--text)}
+    dialog::backdrop{background:rgba(0,0,0,.6)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .modal-body{padding:16px}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08);padding:26px 0;color:var(--sub);text-align:center}
+
+    /* Responsive */
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
+    @media(max-width:640px){.grid-3{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><span class="dot"></span> Muhammad Faisal</div>
+        <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">Tentang</a>
+          <a href="#skills" class="nav-link">Keahlian</a>
+          <a href="#projects" class="nav-link">Proyek</a>
+          <a href="#timeline" class="nav-link">Timeline</a>
+          <a href="#contact" class="nav-link">Kontak</a>
+          <a href="kapita.html" class="nav-link">Kapita Selecta</a>
+          <button id="themeToggle" aria-label="Toggle tema" class="btn" title="Tema">Tema</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div>
+        <h1>Informatics Engineering • Builder of useful, not-useless things.</h1>
+        <p>Fokus pada IoT, web full‑stack, dan sistem yang benar‑benar jalan. Portofolio ini interaktif, ringan, dan penuh hal yang bisa diklik supaya dosen dan HR tidak bosan.</p>
+        <div class="cta">
+          <a href="#projects" class="btn primary">Lihat Proyek</a>
+          <a href="#contact" class="btn">Hubungi</a>
+        </div>
+      </div>
+      <div class="card pad" aria-hidden="true">
+        <div class="grid-2">
+          <div>
+            <div class="sub">Stat singkat</div>
+            <ul>
+              <li>3+ proyek IoT kampus</li>
+              <li>Laravel, React, Node‑RED, ESP32</li>
+              <li>Linux enthusiast</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sub">Fokus 2025</div>
+            <ul>
+              <li>Smart Parking & e‑Voting PoC</li>
+              <li>Reliability & Observability</li>
+              <li>Open‑source contribution</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2 class="section-title">Tentang</h2>
+      <p class="section-sub">Sedikit konteks biar tidak disangka bot. Saya mahasiswa Informatika yang lumayan cerewet soal arsitektur dan performa, tapi tetap peduli UX. Bekerja dengan dokumentasi yang layak dibaca manusia.</p>
+      <div class="grid-3">
+        <div class="card pad"><strong>Nilai</strong><p>Build in public, dokumentasi rapi, otomasi seperlunya.</p></div>
+        <div class="card pad"><strong>Minat</strong><p>IoT + Web, sistem antrian, sensor, dan visualisasi real‑time.</p></div>
+        <div class="card pad"><strong>Target</strong><p>Produk kecil dengan dampak nyata di lingkungan kampus.</p></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="section-title">Keahlian</h2>
+      <p class="section-sub">Bar animasi muncul saat scroll. Relax, CPU kamu aman.</p>
+      <div class="grid-2">
+        <div class="card pad">
+          <div class="skill"><div>JavaScript/TS</div><div class="bar"><span style="--val:86%"></span></div></div>
+          <div class="space"></div>
+          <div class="skill"><div>Laravel/PHP</div><div class="bar"><span style="--val:82%"></span></div></div>
+          <div class="space"></div>
+          <div class="skill"><div>React</div><div class="bar"><span style="--val:78%"></span></div></div>
+          <div class="space"></div>
+          <div class="skill"><div>PostgreSQL</div><div class="bar"><span style="--val:74%"></span></div></div>
+        </div>
+        <div class="card pad">
+          <div class="skill"><div>ESP32/IoT</div><div class="bar"><span style="--val:76%"></span></div></div>
+          <div class="space"></div>
+          <div class="skill"><div>Node‑RED/MQTT</div><div class="bar"><span style="--val:80%"></span></div></div>
+          <div class="space"></div>
+          <div class="skill"><div>Linux/DevOps</div><div class="bar"><span style="--val:72%"></span></div></div>
+          <div class="space"></div>
+          <div class="skill"><div>UI/UX</div><div class="bar"><span style="--val:70%"></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2 class="section-title">Proyek</h2>
+      <p class="section-sub">Filter proyek berdasarkan kategori. Klik kartu untuk detail.</p>
+      <div class="toolbar" role="tablist" aria-label="Filter proyek">
+        <button class="chip active" data-filter="all">Semua</button>
+        <button class="chip" data-filter="iot">IoT</button>
+        <button class="chip" data-filter="web">Web</button>
+        <button class="chip" data-filter="data">Data</button>
+      </div>
+      <div class="grid-3" id="projectGrid">
+        <article class="project" data-tags="iot web" aria-label="Smart Parking">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="Smart Parking"/>
+          <div class="meta">
+            <div class="title">Smart Parking</div>
+            <div class="tag">IoT • Web • MQTT</div>
+          </div>
+        </article>
+        <article class="project" data-tags="web" aria-label="SIAKAD Lite">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="SIAKAD"/>
+          <div class="meta">
+            <div class="title">SIAKAD Lite</div>
+            <div class="tag">Laravel • PostgreSQL</div>
+          </div>
+        </article>
+        <article class="project" data-tags="iot data" aria-label="Env Monitor">
+          <img src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?q=80&w=1200&auto=format&fit=crop" alt="Env Monitor"/>
+          <div class="meta">
+            <div class="title">Env Monitor</div>
+            <div class="tag">ESP32 • Grafana</div>
+          </div>
+        </article>
+        <article class="project" data-tags="web" aria-label="E‑Commerce Minimal">
+          <img src="https://images.unsplash.com/photo-1557825835-a5267449721a?q=80&w=1200&auto=format&fit=crop" alt="E‑Commerce"/>
+          <div class="meta">
+            <div class="title">E‑Commerce Minimal</div>
+            <div class="tag">Next.js • Stripe (mock)</div>
+          </div>
+        </article>
+        <article class="project" data-tags="data" aria-label="Ujian Analyzer">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?q=80&w=1200&auto=format&fit=crop" alt="Ujian Analyzer"/>
+          <div class="meta">
+            <div class="title">Ujian Analyzer</div>
+            <div class="tag">PostgreSQL • Indexing</div>
+          </div>
+        </article>
+        <article class="project" data-tags="web iot" aria-label="e‑Voting PoC">
+          <img src="https://images.unsplash.com/photo-1553729784-e91953dec042?q=80&w=1200&auto=format&fit=crop" alt="e‑Voting"/>
+          <div class="meta">
+            <div class="title">e‑Voting PoC</div>
+            <div class="tag">ZKP (konsep) • Audit</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="section">
+      <h2 class="section-title">Timeline</h2>
+      <div class="timeline card pad">
+        <div class="tl-item"><h4>2025</h4><p>PoC e‑Voting kampus; optimasi Smart Parking; kontribusi OSS kecil‑kecilan.</p></div>
+        <div class="tl-item"><h4>2024</h4><p>Prototype Smart Parking; dashboard web; eksperimen MQTT/Grafana.</p></div>
+        <div class="tl-item"><h4>2023</h4><p>Proyek web kampus; belajar React dan arsitektur bersih.</p></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Kontak</h2>
+      <p class="section-sub">Form ini berjalan di sisi klien. Kirim via mailto atau webhook kamu sendiri.</p>
+      <form id="contactForm" class="card pad" novalidate>
+        <div class="grid-2">
+          <label>Nama<br><input name="name" required placeholder="Nama lengkap"/></label>
+          <label>Email<br><input type="email" name="email" required placeholder="email@contoh.id"/></label>
+        </div>
+        <div class="space"></div>
+        <label>Pesan<br><textarea name="message" rows="5" required placeholder="Tulis pesan jelas dan padat."></textarea></label>
+        <div class="space"></div>
+        <button class="btn primary" type="submit">Kirim</button>
+        <span id="formStatus" style="margin-left:10px;color:var(--sub)"></span>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> • Muhammad Faisal • Dibangun dengan HTML + CSS + JS murni
+  </footer>
+
+  <!-- MODAL -->
+  <dialog id="projectModal" aria-label="Detail proyek">
+    <div class="modal-head">
+      <strong id="modalTitle">Detail Proyek</strong>
+      <button class="btn" id="modalClose">Tutup</button>
+    </div>
+    <div class="modal-body">
+      <p id="modalBody">Konten proyek akan muncul di sini. Sertakan deskripsi, tech stack, dan link repo.</p>
+    </div>
+  </dialog>
+
+<script>
+  // Theme toggle + persist
+  const themeBtn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+  themeBtn.onclick = () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? '' : 'light';
+    if(next) document.documentElement.setAttribute('data-theme', next); else document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', next);
+  };
+
+  // Scroll spy nav
+  const links = [...document.querySelectorAll('.nav-link')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const idx = sections.indexOf(e.target);
+      if(e.isIntersecting){ links.forEach(l=>l.classList.remove('active')); links[idx].classList.add('active'); }
+    });
+  },{rootMargin:'-60% 0px -35% 0px', threshold:0});
+  sections.forEach(s=>s && spy.observe(s));
+
+  // Skills animate
+  const bars = document.querySelectorAll('.bar>span');
+  const skillObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.style.transform = `scaleX(${getComputedStyle(e.target).getPropertyValue('--val')})`; }
+    })
+  },{threshold:.4});
+  bars.forEach(b=>skillObs.observe(b));
+
+  // Project filter + modal
+  const chips = document.querySelectorAll('.chip');
+  const grid = document.getElementById('projectGrid');
+  const cards = [...grid.querySelectorAll('.project')];
+  chips.forEach(ch=>ch.addEventListener('click',()=>{
+    chips.forEach(c=>c.classList.remove('active'));
+    ch.classList.add('active');
+    const f = ch.dataset.filter;
+    cards.forEach(card=>{
+      const show = f==='all' || card.dataset.tags.includes(f);
+      card.style.display = show ? 'flex' : 'none';
+    });
+  }))
+  const modal = document.getElementById('projectModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const modalClose = document.getElementById('modalClose');
+  cards.forEach(card=>{
+    card.addEventListener('click',()=>{
+      modalTitle.textContent = card.querySelector('.title').textContent;
+      modalBody.innerHTML = `<strong>Tag:</strong> ${card.dataset.tags}<br><br>Deskripsi singkat proyek. Tambahkan link repo dan demo sesuai kebutuhan.`;
+      modal.showModal();
+    })
+  })
+  modalClose.onclick = ()=> modal.close();
+
+  // Contact form
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    if(!form.reportValidity()){ return; }
+    const data = new FormData(form);
+    const name = data.get('name');
+    const email = data.get('email');
+    const message = data.get('message');
+    status.textContent = 'Membuka klien email…';
+    const body = encodeURIComponent(`Halo, saya ${name}\n\n${message}\n\n— ${email}`);
+    window.location.href = `mailto:faisal@example.com?subject=Kontak Portofolio&body=${body}`;
+    setTimeout(()=> status.textContent = 'Jika klien email tidak terbuka, kirim manual ke faisal@example.com', 1200);
+  });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
